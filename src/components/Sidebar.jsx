@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { useState, useEffect } from 'react';
 import { GiHamburgerMenu } from 'react-icons/gi';
 import { FiSearch } from 'react-icons/fi';
@@ -8,7 +9,7 @@ import { IoMdAdd } from "react-icons/io";
 import { useDispatch } from 'react-redux';
 import {filterTodayTodos,filterUpcomingTodos,setSearchTerm} from "../Slices/TodoSlice"
 
-// debounce function for search bar 
+// debounce function for search bar for not making more class 
 const debounce = (func, delay) => {
   let timeoutId;
   return (...args) => {
@@ -19,16 +20,29 @@ const debounce = (func, delay) => {
 
 
 function Sidebar() {
+
+  // state variable for expand and compress side bar
   const [isExpanded, setIsExpanded] = useState(true);
+
+  // check windowidth for auto expand and compress sidebar
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
+
+
   const [searchQuery, setsearchQuesry] = useState('');
+
+
+
   const dispatch = useDispatch();
+
+  //use useEffect hook to check the widht whenever it resize
   useEffect(() => {
     const handleResize = () => setWindowWidth(window.innerWidth);
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, []);
+
+
 
 
   useEffect(() => {
@@ -39,17 +53,22 @@ function Sidebar() {
     }
   }, [windowWidth]);
 
+
+  // function for manual toggle sidebar
+
   const toggleSidebar = () => {
     setIsExpanded(!isExpanded);
   };
 
+
+  // unction for handle search and update the search query
   const handleSearch = (event) => {
     const value = event.target.value;
     setsearchQuesry( value);
     debouncedSearch(value);
   };
 
-
+// debouncing search using debounce for less calls
   const debouncedSearch = debounce((value) => { 
     dispatch(setSearchTerm(value));
   }, 300);

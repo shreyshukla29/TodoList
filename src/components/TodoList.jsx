@@ -25,10 +25,15 @@ const statusColor = (status) => {
 function TodoList() {
   const todoList = useSelector((state) => state.todo.filtertodo);
   const dispatch=useDispatch();
+
+  // function to handle the status of todo
   const handleCheckboxChange = (todo) => {
     dispatch(todoFinished({ id: todo.id, status: todo.status === 'Completed' ? 'Pending' : 'Completed' }));
   };
 
+
+  // function to handle the curr todo which is selected
+  
   const selectodo = (todo)=>{
     dispatch(currtodo({todo}))
   }

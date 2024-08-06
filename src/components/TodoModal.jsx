@@ -23,6 +23,8 @@ function TodoModal({ onClose }) {
 
   const todoHeading = useSelector((state)=> state.todo.todoShow)
 
+  // todo items for creating the todo 
+
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [dueDate, setDueDate] = useState('');
@@ -30,6 +32,8 @@ function TodoModal({ onClose }) {
 
 
   const dispatch = useDispatch();
+
+  // submit function for adding new todo 
 
   const handleSubmit = (e) => {
     e.preventDefault();

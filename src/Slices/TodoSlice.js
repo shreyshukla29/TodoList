@@ -119,6 +119,7 @@ const todoSlice = createSlice({
       );
     },
 
+    // search function to search for specific todo using its title
     setSearchTerm: (state, action) => {
       const searchTerm = action.payload; 
       console.log('search',searchTerm) 

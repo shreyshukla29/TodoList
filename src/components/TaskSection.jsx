@@ -17,12 +17,15 @@ const TaskSection = () => {
   const todoHeading = useSelector((state)=> state.todo.todoShow)
   console.log('todo',todo)
 
-  
+
+  // making state variables for handling the update of currtodo
   const [list, setList] = useState('Personal');
   const [priority, setPriority] = useState('High');
   const [dueDate, setDueDate] = useState('');
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
+
+  // use effect to handle the todo update if change it store
   useEffect(() => {
     console.log('in effect')
     if (todo) {
@@ -33,6 +36,8 @@ const TaskSection = () => {
       setDescription(todo.description || 'description');
     }
   }, [todo]);
+
+  // function for save new edited todo 
   const handleSave = () => {
     if (todo) {
       dispatch(editTodo({
@@ -58,6 +63,8 @@ const TaskSection = () => {
     }
   };
 
+
+  // function for handle the delete todo
   const handleDelete = () => {
     if (todo) {
       dispatch(deleteTodo({
