@@ -49,7 +49,6 @@ const todoSlice = createSlice({
       console.log(todo);
 
       state.currtodo = todo;
-
       console.log("currtodo", state.currtodo);
     },
     // edit todo method to edit the todo and update the state
@@ -119,6 +118,22 @@ const todoSlice = createSlice({
         (todo) => parseISO(todo.dueDate).toISOString().slice(0, 10) === date
       );
     },
+
+    setSearchTerm: (state, action) => {
+      const searchTerm = action.payload; 
+      console.log('search',searchTerm) 
+      // Create a regular expression for searching
+      const regex = new RegExp(searchTerm, 'i'); 
+
+      console.log('regex',regex)
+      state.filtertodo = state.todolist.filter((todo) =>
+        regex.test(todo.title)
+      );
+      state.todoShow = 'Search Result'
+      if(searchTerm == ''){
+        state.todoShow ='All ToDo'
+      }
+    },
   },
 });
 
@@ -128,6 +143,6 @@ export const {
   todoFinished,
   deleteTodo,
   currtodo,
-  filterTodayTodos,filterUpcomingTodos,allTodo
+  filterTodayTodos,filterUpcomingTodos,allTodo,setSearchTerm
 } = todoSlice.actions;
 export default todoSlice.reducer;

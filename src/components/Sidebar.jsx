@@ -6,16 +6,31 @@ import { MdKeyboardDoubleArrowRight } from "react-icons/md";
 import { VscChecklist } from "react-icons/vsc";
 import { IoMdAdd } from "react-icons/io";
 import { useDispatch } from 'react-redux';
-import {filterTodayTodos,filterUpcomingTodos} from "../Slices/TodoSlice"
+import {filterTodayTodos,filterUpcomingTodos,setSearchTerm} from "../Slices/TodoSlice"
+
+// debounce function for search bar 
+const debounce = (func, delay) => {
+  let timeoutId;
+  return (...args) => {
+    clearTimeout(timeoutId);
+    timeoutId = setTimeout(() => func(...args), delay);
+  };
+};
+
+
 function Sidebar() {
   const [isExpanded, setIsExpanded] = useState(true);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+
+  const [searchQuery, setsearchQuesry] = useState('');
   const dispatch = useDispatch();
   useEffect(() => {
     const handleResize = () => setWindowWidth(window.innerWidth);
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, []);
+
+
   useEffect(() => {
     if (windowWidth <= 640) {
       setIsExpanded(false);
@@ -27,6 +42,18 @@ function Sidebar() {
   const toggleSidebar = () => {
     setIsExpanded(!isExpanded);
   };
+
+  const handleSearch = (event) => {
+    const value = event.target.value;
+    setsearchQuesry( value);
+    debouncedSearch(value);
+  };
+
+
+  const debouncedSearch = debounce((value) => { 
+    dispatch(setSearchTerm(value));
+  }, 300);
+
   return (
     <div className={`flex flex-col ${isExpanded ? 'w-[230px]' : 'w-[60px]'} bg-zinc-200 rounded-lg h-full transition-width duration-300`}>
       <div className={`flex ${!isExpanded ? 'justify-center' : 'justify-between'} px-2 py-4 items-center`}>
@@ -42,7 +69,8 @@ function Sidebar() {
           type="text" 
           placeholder="Search" 
           className={` rounded-lg pl-2 py-1  outline-none ${!isExpanded && 'hidden'}`} 
-        />
+        
+        onChange= {(e)=> handleSearch(e)}/>
          <FiSearch className={`text-gray-400 mr-2 w-6 h-6 
           ${isExpanded && 'relative right-6 '}`} />
       </div>
