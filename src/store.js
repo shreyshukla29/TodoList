@@ -4,8 +4,7 @@ import { configureStore } from "@reduxjs/toolkit";
 
 import todoReducer from "./Slices/TodoSlice";
 
-console.log(todoReducer)
-
+// add todoreduce in redurec of store to perform action and effectively change the states
 const store = configureStore({
   reducer: {
     todo: todoReducer,

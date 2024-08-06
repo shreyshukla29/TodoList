@@ -7,6 +7,7 @@ import './index.css';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
+    {/* Add Redux store provider for whole project */}
     <Provider store={store}>
     
       <App />

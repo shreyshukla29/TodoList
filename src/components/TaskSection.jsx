@@ -1,13 +1,23 @@
 import { useState, useEffect } from 'react';
 import { MdOutlineEdit } from "react-icons/md";
 import { useSelector, useDispatch } from 'react-redux';
-import { editTodo, deleteTodo } from '../Slices/TodoSlice';
+import { editTodo, deleteTodo ,filterUpcomingTodos,filterTodayTodos,allTodo} from '../Slices/TodoSlice';
 
+// Task Secion to display the curr todo 
 
 const TaskSection = () => {
+
+  //using useDispatch hook to dispatch the actions
   const dispatch = useDispatch();
+
+  // using use Selector to get the curr store state data
   const todo = useSelector((state) => state.todo.currtodo);
+
+
+  const todoHeading = useSelector((state)=> state.todo.todoShow)
   console.log('todo',todo)
+
+  
   const [list, setList] = useState('Personal');
   const [priority, setPriority] = useState('High');
   const [dueDate, setDueDate] = useState('');
@@ -19,8 +29,8 @@ const TaskSection = () => {
       setList(todo.list || 'Personal');
       setPriority(todo.priority || 'High');
       setDueDate(todo.dueDate || '');
-      setTitle(todo.title || '');
-      setDescription(todo.description || '');
+      setTitle(todo.title || 'title');
+      setDescription(todo.description || 'description');
     }
   }, [todo]);
   const handleSave = () => {
@@ -33,6 +43,18 @@ const TaskSection = () => {
         priority,
         status: todo.status
       }));
+
+      if(todoHeading == 'Upcoming'){
+        dispatch(filterUpcomingTodos())
+      }else if(todoHeading == 'Today'){
+        dispatch(filterTodayTodos())
+      }else{
+        dispatch(allTodo())
+      }
+
+
+
+
     }
   };
 
@@ -41,7 +63,16 @@ const TaskSection = () => {
       dispatch(deleteTodo({
         id: todo.id
       }));
+
+      if(todoHeading == 'Upcoming'){
+        dispatch(filterUpcomingTodos())
+      }else if(todoHeading == 'Today'){
+        dispatch(filterTodayTodos())
+      }else{
+        dispatch(allTodo())
+      }
     }
+   
   };
 
   return (

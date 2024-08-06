@@ -2,7 +2,12 @@
 
 import { useSelector, useDispatch } from 'react-redux';
 import { todoFinished,currtodo } from '../Slices/TodoSlice';
+import { useEffect } from 'react';
 
+
+// Here all the todo present according to filteration 
+
+// status color function to set the color of todo Status according to status
 
 const statusColor = (status) => {
   switch (status) {
@@ -21,6 +26,9 @@ function TodoList() {
   const todoList = useSelector((state) => state.todo.filtertodo);
   const dispatch=useDispatch();
 
+
+  
+
   const handleCheckboxChange = (todo) => {
     dispatch(todoFinished({ id: todo.id, status: todo.status === 'Completed' ? 'Pending' : 'Completed' }));
   };
@@ -28,6 +36,10 @@ function TodoList() {
   const selectodo = (todo)=>{
     dispatch(currtodo({todo}))
   }
+
+  useEffect(()=>{
+
+  },[todoList])
     return (
         <div className="flex flex-col p-4 space-y-4 w-full
        overflow-y-scroll">

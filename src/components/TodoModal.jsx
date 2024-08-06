@@ -1,14 +1,33 @@
 /* eslint-disable react/prop-types */
 import  { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { addTodo } from '../Slices/TodoSlice';
+import { addTodo ,filterUpcomingTodos,filterTodayTodos,allTodo} from '../Slices/TodoSlice';
+import { useSelector } from 'react-redux';
+
+
+// Todo Modal for Adding Todo
+
+/**
+ * For eg : 
+ * 
+ * todo = {
+ * id:1 ,
+ * title: title,
+ * description,
+ * dueDate,
+ * priority}
+ */
 
 
 function TodoModal({ onClose }) {
+
+  const todoHeading = useSelector((state)=> state.todo.todoShow)
+
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [dueDate, setDueDate] = useState('');
   const [priority, setPriority] = useState('High');
+
 
   const dispatch = useDispatch();
 
@@ -21,10 +40,20 @@ function TodoModal({ onClose }) {
         dueDate, 
         priority 
       }));
+
+      if(todoHeading == 'Upcoming'){
+        dispatch(filterUpcomingTodos())
+      }else if(todoHeading == 'Today'){
+        dispatch(filterTodayTodos())
+      }else{
+        dispatch(allTodo())
+      }
+
+
       onClose();
     }
   };
-
+ 
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-gray-500 bg-opacity-75">
       <div className="bg-white p-6 rounded shadow-lg w-1/3">

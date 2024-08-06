@@ -3,11 +3,17 @@ import TodoList from './TodoList';
 import TodoModal from './TodoModal';
 import { useSelector } from 'react-redux';
 
+
+// Todo Section where we can see todos filter as All Todo ,Today and Datewise todo
 function TodoSection() {
     const [isModalOpen, setIsModalOpen] = useState(false);
+
+    // openModal function to handle open modal for add todo
     const openModal = () => {
         setIsModalOpen(true);
     };
+
+    // closemodal function to handle close modal for add todo function
     const closeModal = () => {
         setIsModalOpen(false);
     };
