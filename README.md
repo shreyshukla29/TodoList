@@ -57,6 +57,7 @@ To get started with this project, follow these steps:
 
 The project follows a structured file organization to maintain clarity and manageability. Below is the file structure with brief descriptions:
 
+
 /src
 │
 ├── /components
