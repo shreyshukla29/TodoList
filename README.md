@@ -27,7 +27,7 @@ To get started with this project, follow these steps:
 3. Run the Application:
 
     ```bash
-     npm start
+     npm run dev
 
 
 4. Open the Application:
@@ -58,22 +58,19 @@ To get started with this project, follow these steps:
 The project follows a structured file organization to maintain clarity and manageability. Below is the file structure with brief descriptions:
 
 
-/src
-│
-├── /components
-│ ├── TodoList.jsx # Component to display the list of todos
-│ ├── TodoModal.jsx # Modal for adding and editing todos
-│ ├── TodoSection.jsx # Section to display today's todos
-│ ├── Upcoming.jsx # Section to display upcoming todos
-│ └── TaskSection.jsx # Section for detailed view and editing of a selected task
-│
-├── /redux
-│ └── TodoSlice.js # Redux slice managing todos, including actions and reducers
-│
-├── /utils
-│ └── debounce.js # Custom debounce function for search optimization
-│
-├── App.jsx # Main application component with routing setup
-├── index.jsx # Entry point for the React application
-├── main.jsx # Entry point for rendering the application with BrowserRouter
-└── App.css # Global styles for the application
+
+- **`/src`**: The main source directory contains all the application code.
+  - **`/components`**: Contains React components used throughout the application.
+    - `TodoList.jsx`: Component to display the list of todos.
+    - `TodoModal.jsx`: Modal for adding and editing todos.
+    - `TodoSection.jsx`: Section to display today's todos.
+    - `Upcoming.jsx`: Section to display upcoming todos.
+    - `TaskSection.jsx`: Section for detailed view and editing of a selected task.
+  - **`/redux`**: Contains Redux-related files.
+    - `TodoSlice.js`: Redux slice managing todos, including actions and reducers.
+  - **`/utils`**: Contains utility functions.
+    - `debounce.js`: Custom debounce function for search optimization.
+  - `App.jsx`: Main application component with routing setup.
+  - `index.jsx`: Entry point for the React application.
+  - `main.jsx`: Entry point for rendering the application with BrowserRouter.
+  - `App.css`: Global styles for the application.
