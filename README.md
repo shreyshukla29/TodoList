@@ -1,26 +1,29 @@
 Todo Application
 
-
-A React-based Todo application with features including search functionality with debouncing, filtering by date, and category, and task management with a clean UI. The app uses Redux Toolkit for state management and includes a sidebar for navigation.
+A React-based Todo application with features including search functionality with debouncing filtering by date, and category, and task management with a clean UI. The app uses Redux Toolkit for state management and includes a sidebar for navigation.
 
 Features
-Add, Edit, and Delete Todos: Manage your tasks easily.
-Search with Debouncing: Efficiently search through your todos with real-time feedback.
-Filter Todos: View todos by today, upcoming, and date-wise.
-Responsive Design: The application is designed to work well on various screen sizes.
+
+1. Add, Edit, and Delete Todos: Manage your tasks easily.
+2. Search with Debouncing: Efficiently search through your todos with real-time feedback.
+3. Filter Todos: View todos by today, upcoming, and date-wise.
+4. Responsive Design: The application is designed to work well on various screen sizes.
+
 Installation
+
 To get started with this project, follow these steps:
 
-Clone the Repository:
+1. Clone the Repository:
 
-bash
-Copy code
-git clone https://github.com/yourusername/todo-app.git
+bash Copy code
+
+git clone https://github.com/yourusername/todo-app.
+git
 cd todo-app
+
 Install Dependencies:
 
-bash
-Copy code
+bash Copy code
 npm install
 Run the Application:
 
