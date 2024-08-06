@@ -19,45 +19,60 @@ To get started with this project, follow these steps:
    cd todo-app
 
 
-Install Dependencies:
+2. Install Dependencies:
 
-bash Copy code
-npm install
-Run the Application:
+   ```bash
+     npm install
 
-bash
-Copy code
-npm start
-Open the Application:
-Navigate to http://localhost:3000 in your web browser.
+3. Run the Application:
 
-Usage
-Sidebar Navigation
-Today: View and manage tasks due today.
-Upcoming: See tasks that are scheduled for future dates.
-Calendar: A comprehensive view of tasks based on selected dates.
-Search Functionality
-Search Bar: Located in the "Today" section. Enter keywords to search through your tasks.
-Debouncing: The search input is debounced to improve performance and reduce unnecessary re-renders.
-Task Management
-Add Todo: Click the "Add Todo" button to open the modal and add a new task.
-Edit Todo: Click on a task to view details and make edits.
-Delete Todo: Remove tasks from the list as needed.
-Folder Structure
-src/
-components/
-Sidebar.jsx: Sidebar component with navigation links.
-TodoSection.jsx: Component for managing today's tasks.
-Upcoming.jsx: Component for managing upcoming tasks.
-TaskSection.jsx: Component for viewing and editing task details.
-TodoModal.jsx: Modal for adding and editing todos.
-TodoList.jsx: Displays a list of todos.
-Slices/
-TodoSlice.js: Redux slice for todo state management.
-App.jsx: Main application component with routing.
-main.jsx: Entry point for the React application.
-Redux Setup
-TodoSlice.js: Manages todos state, including actions for adding, editing, and deleting todos. Includes a search reducer for filtering todos.
-Custom Features
-Custom Debounce: Implemented to improve search performance.
-Date and Category Filtering: Allows viewing todos based on specific criteria.
+    ```bash
+     npm start
+
+
+4. Open the Application:
+    Navigate to http://localhost:3000 in your web browser.
+
+## Usage
+
+### Sidebar Navigation
+
+- **Today**: Manage tasks due today.
+- **Upcoming**: View tasks scheduled for future dates.
+- **Calendar**: View tasks based on selected dates.
+
+### Search Functionality
+
+- **Search Bar**: Located in the "Today" section for finding tasks by title.
+- **Debouncing**: Custom debounce implementation improves search performance.
+
+### Task Management
+
+- **Add Todo**: Click "Add Todo" to open the modal and add a new task.
+- **Edit Todo**: Click on a task to view and edit details.
+- **Delete Todo**: Remove tasks from the list as needed.
+
+
+## Folder Structure
+
+The project follows a structured file organization to maintain clarity and manageability. Below is the file structure with brief descriptions:
+
+/src
+│
+├── /components
+│ ├── TodoList.jsx # Component to display the list of todos
+│ ├── TodoModal.jsx # Modal for adding and editing todos
+│ ├── TodoSection.jsx # Section to display today's todos
+│ ├── Upcoming.jsx # Section to display upcoming todos
+│ └── TaskSection.jsx # Section for detailed view and editing of a selected task
+│
+├── /redux
+│ └── TodoSlice.js # Redux slice managing todos, including actions and reducers
+│
+├── /utils
+│ └── debounce.js # Custom debounce function for search optimization
+│
+├── App.jsx # Main application component with routing setup
+├── index.jsx # Entry point for the React application
+├── main.jsx # Entry point for rendering the application with BrowserRouter
+└── App.css # Global styles for the application
